@@ -36,6 +36,11 @@ A sample project built with Symfony for creating orders via a REST API secured w
     docker compose exec app php bin/console doctrine:migrations:migrate --no-interaction
     ```
 
+5.  **Add sample data**
+    ```bash
+    docker compose exec app php bin/console doctrine:fixtures:load --no-interaction
+    ```
+
 ## Testing
 ```bash
 docker compose exec app bin/phpunit
