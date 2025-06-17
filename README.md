@@ -31,6 +31,11 @@ A sample project built with Symfony for creating orders via a REST API secured w
     docker compose up -d --build
     ```
 
+4.  **Run database migrations**
+    ```bash
+    docker compose exec app php bin/console doctrine:migrations:migrate --no-interaction
+    ```
+
 ## Testing
 ```bash
 docker compose exec app bin/phpunit
