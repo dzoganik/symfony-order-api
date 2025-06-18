@@ -41,6 +41,61 @@ A sample project built with Symfony for creating orders via a REST API secured w
     docker compose exec app php bin/console doctrine:fixtures:load --no-interaction
     ```
 
+## API Endpoints
+
+### Authentication (JWT)
+
+*   **POST `/api/login_check`** - Retrieves a JWT token.
+    *   **Request:**
+        ```bash
+        Host: localhost
+        Content-Type: application/json´
+        
+        {
+            "email": "user1@example.com",
+            "password":"password1"
+        }
+        ```
+    *   **Response:**
+        ```json
+        {
+            "token": "eyJ..."
+        }
+        ```
+
+### Orders
+*   **POST `/api/orders`** - Creates a new order. (Requires JWT token)
+    *   **Request:**
+        ```bash
+        Host: localhost
+        Content-Type: application/json
+        Authorization: Bearer eyJ...
+
+        {
+            "items": [
+                {
+                    "productName": "Product A",
+                    "quantity": 1,
+                    "unitPrice": "19.99"
+                },
+                {
+                    "productName": "Product B",
+                    "quantity": 3,
+                    "unitPrice": "5.00"
+                }
+            ]
+        }
+        ```
+    *   **Response:**
+        ```json
+        {
+            "message": "Order created successfully.",
+            "order": {
+                "id": 5
+            }
+        }
+        ```
+
 ## Testing
 ```bash
 docker compose exec app bin/phpunit
